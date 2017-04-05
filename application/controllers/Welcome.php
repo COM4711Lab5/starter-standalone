@@ -3,22 +3,19 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Welcome extends Application {
-
+	
+	function __construct()
+	{
+		parent::__construct();
+		$this->load->model('menu');
+		$this->data['pagetitle'] = 'boop';
+	}
+	
 	public function index()
 	{
-		$result = '';
-		$oddrow = true;
-		foreach ($this->categories->all() as $category)
-		{
-//			$viewparms = array(
-//				'direction' => ($oddrow ? 'left' : 'right')
-//			);
-//			$viewparms = array_merge($viewparms, $category);
-			$category->direction = ($oddrow ? 'left' : 'right');
-			$result .= $this->parser->parse('category-home', $category, true);
-			$oddrow = ! $oddrow;
-		}
-		$this->data['content'] = $result;
+		$this->data['title'] = 'boop';
+		$this->data['content'] = 'You should not be here';
+		$this->data['pagebody'] = 'template';
 		$this->render();
 	}
 
